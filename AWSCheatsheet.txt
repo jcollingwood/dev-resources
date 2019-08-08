@@ -1,0 +1,3 @@
+AWS Cheatsheet
+Login to server instance:
+> ssh -i ./awsInstanceKeyPair.pem ubuntu@instance-number-here.compute.amazonaws.com

@@ -1,0 +1,36 @@
+Docker Cheat Sheet:
+Docker Login:
+> docker login -u jacollingwood --password-stdin
+
+Show running containers:
+> docker container ls
+
+All containers:
+> docker container ls -a
+
+Show docker images:
+> docker image ls
+
+Build new image from Dockerfile:
+> docker build -t REPO_NAME:TAG .{/path/to/dockerfile}
+
+Run built image:
+> docker run -p 3000:3000 -d --name CONTAINER_NAME REPO_NAME:TAG
+
+Stop Container:
+> docker stop CONTAINER_ID
+
+Restart Container:
+> docker restart CONTAINER_ID
+
+Create docker network:
+> docker network create network
+
+Connect container to networks:
+> docker network connect NETWORK CONTAINER_NAME
+
+View docker networks:
+> docker network ls
+
+Push docker image to repo:
+> docker push jacollingwood/REPO_NAME:TAG
