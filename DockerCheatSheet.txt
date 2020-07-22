@@ -34,3 +34,9 @@ View docker networks:
 
 Push docker image to repo:
 > docker push jacollingwood/REPO_NAME:TAG
+
+Enter Container:
+> docker exec -it CONTAINER_NAME 
+
+Run Command in Container:
+> docker exec -it CONTAINER_NAME [command]

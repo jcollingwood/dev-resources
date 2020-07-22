@@ -1,0 +1,4 @@
+VIM Cheatsheet:
+Exit: 
+> :qa!
+

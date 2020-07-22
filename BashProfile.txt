@@ -1,0 +1,9 @@
+source $HOME/.git_profile
+
+ga() {
+        git add $@
+        git status
+}
+alias gs='git status'
+alias gc='git commit -m'
+alias gb='git branch -a'
