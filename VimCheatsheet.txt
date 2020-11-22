@@ -1,4 +1,6 @@
 VIM Cheatsheet:
 Exit: 
 > :qa!
+Save:
+> :w
 
