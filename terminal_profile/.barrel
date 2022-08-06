@@ -1,0 +1,6 @@
+source $HOME/.shell_profiles/.env
+source $HOME/.shell_profiles/.git_profile
+
+
+terminal_welcome_msg="what's cookin' good lookin'?\n"
+echo $terminal_welcome_msg
