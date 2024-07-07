@@ -9,7 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-source .shell_profiles/.barrel
+source $HOME/.shell_profiles/.barrel
 
 # p10k theme, must be at end of .zshrc
 source ~/powerlevel10k/powerlevel10k.zsh-theme

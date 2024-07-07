@@ -1,2 +1,4 @@
-source .shell_profiles/.env
-source .shell_profiles/.git_profile
+# source ~/.env file if exists
+ENV_VARS_FILE=$HOME/.env && test -f $ENV_VARS_FILE && source $ENV_VARS_FILE
+
+source $HOME/.shell_profiles/.git_profile
