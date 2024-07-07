@@ -1,0 +1,15 @@
+# git cli shortcuts
+alias gits='git status'
+alias gitc='git commit -m'
+alias gitps='git push'
+alias gitpl='git pull'
+alias gitco='git checkout'
+alias gitbr='git branch -a'
+alias gitmerge='git pull && git merge origin/master && git status'
+# reset entire branch
+alias gitreset='git reset --hard && checkout master && git pull'
+# adds specified files then displays status
+function gita {
+    git add $@
+    git status
+}

@@ -1,0 +1,2 @@
+source .shell_profiles/.env
+source .shell_profiles/.git_profile

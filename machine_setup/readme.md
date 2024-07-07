@@ -105,13 +105,19 @@ git clone git@github.com:jcollingwood/dev-resources.git
 
 Stow is a tool to help manage symlinking dotfiles.
 
-note: must provide target to home directory, otherwise stow will symlink into parent directory
+note: default target directory of `/home/joel` is provided in `.stowrc` located in dotfiles directory, as needed update that file or override manually with `--target=/path/to/home`
 ```
 sudo apt install stow
-stow [package_name] --target=/home/joel
+# must run stow from dotfile directory
+cd ~/workspace/dev-resources/machine_setup/dotfiles
+# validate default target home path matches expectation
+cat .stowrc
+# default output: --target=/home/joel
+stow [package_name] 
 
-stow alacritty --target=/home/joel
-stow zsh --target=/home/joel
+stow alacritty
+stow zsh
+stow nvim
 ```
 
 
