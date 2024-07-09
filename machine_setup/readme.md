@@ -90,9 +90,17 @@ cargo install --locked zellij
 # restart terminal to use zellij from path
 ```
 
-#### Neovim (TODO maybe update to include install from source instructions)
+#### [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md) 
+
+note: apt neovim is old, so installing newer version manually, confirm these 3 instructions below are still current
+
 ```
-sudo apt install neovim
+# sudo apt install neovim
+sudo apt-get install ninja-build gettext cmake unzip curl build-essential
+make CMAKE_BUILD_TYPE=Release
+sudo make install
+# additional dependencies
+sudo apt install ripgrep
 ```
 
 #### Dotfiles
@@ -106,6 +114,9 @@ git clone git@github.com:jcollingwood/dev-resources.git
 Stow is a tool to help manage symlinking dotfiles.
 
 note: default target directory of `/home/joel` is provided in `.stowrc` located in dotfiles directory, as needed update that file or override manually with `--target=/path/to/home`
+
+nvim config is based on [kickstart](https://github.com/nvim-lua/kickstart.nvim/tree/master)
+
 ```
 sudo apt install stow
 # must run stow from dotfile directory
@@ -119,6 +130,8 @@ stow alacritty
 stow zsh
 stow nvim
 ```
+
+[Intellij CE](https://www.jetbrains.com/toolbox-app/)
 
 
 ## Gaming Setup
