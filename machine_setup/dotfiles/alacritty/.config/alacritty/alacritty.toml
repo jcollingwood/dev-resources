@@ -5,6 +5,7 @@ args = ["-l", "-c", "zellij"]
 
 [window]
 decorations = "None"
+startup_mode = "Maximized"
 opacity = 0.9
 blur = true
 
