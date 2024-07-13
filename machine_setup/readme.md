@@ -66,7 +66,7 @@ Themes:
 - [powerlevel10k](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#installation)
 
 
-#### Rust/cargo (required for certain dependencies
+#### Rust/cargo (required for certain dependencies)
 ```
 curl https://sh.rustup.rs -sSf | sh
 sudo apt install cargo
@@ -135,7 +135,6 @@ cat .stowrc
 stow [package_name] 
 
 stow alacritty
-
 # for zsh need p10k installed
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 stow zsh
@@ -143,7 +142,13 @@ stow vim
 # stow nvim # currently broken, update if using nvim
 ```
 
-[Intellij CE](https://www.jetbrains.com/toolbox-app/)
+### [Intellij CE](https://www.jetbrains.com/toolbox-app/)
+
+### [VS Code](https://code.visualstudio.com/)
+
+### [GIMP](https://www.gimp.org/)
+
+### ... TODO
 
 
 ## Gaming Setup
