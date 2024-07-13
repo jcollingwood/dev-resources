@@ -90,8 +90,16 @@ cargo install --locked zellij
 # restart terminal to use zellij from path
 ```
 
+#### Vim
+
+```
+sudo apt install vim
+# TODO add additional vim plugin deps as needed
+```
+
 #### [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md) 
 
+note: have been using pure vim in place of neovim recently until need for nvim plugins becomes necessary
 note: apt neovim is old, so installing newer version manually, confirm these 3 instructions below are still current
 
 ```
@@ -99,7 +107,7 @@ note: apt neovim is old, so installing newer version manually, confirm these 3 i
 sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 make CMAKE_BUILD_TYPE=Release
 sudo make install
-# additional dependencies
+# additional dependencies as needed
 sudo apt install ripgrep
 ```
 
@@ -128,7 +136,8 @@ stow [package_name]
 
 stow alacritty
 stow zsh
-stow nvim
+stow vim
+# stow nvim # currently broken, update if using nvim
 ```
 
 [Intellij CE](https://www.jetbrains.com/toolbox-app/)
