@@ -107,7 +107,7 @@ note: apt neovim is old, so installing newer version manually, confirm these 3 i
 sudo apt-get install ninja-build gettext cmake unzip curl build-essential
 make CMAKE_BUILD_TYPE=Release
 sudo make install
-# additional dependencies as needed
+# additional dependencies
 sudo apt install ripgrep
 ```
 
@@ -135,6 +135,9 @@ cat .stowrc
 stow [package_name] 
 
 stow alacritty
+
+# for zsh need p10k installed
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 stow zsh
 stow vim
 # stow nvim # currently broken, update if using nvim
