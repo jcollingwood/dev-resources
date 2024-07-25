@@ -111,6 +111,16 @@ sudo make install
 sudo apt install ripgrep
 ```
 
+#### [Kanata]()
+
+key remapping software, use common configuration across different devices/OSes
+```
+cargo install kanata
+# to start kanata remapp, assuming config stowed (see below)
+sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kdb
+# todo document steps to start kanata on startup
+```
+
 #### Dotfiles
 I like to keep all of my projects in a `workspaces` directory in my `root` directory.
 
@@ -139,6 +149,7 @@ stow alacritty
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
 stow zsh
 stow vim
+stow kanata
 # stow nvim # currently broken, update if using nvim
 ```
 
