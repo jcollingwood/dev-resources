@@ -5,7 +5,7 @@
 )
 
 (defalias
-	escctrl (tap-hold 150 150 esc lctrl)
+	escctrl (tap-hold 500 500 esc esc)
 )
 
 (deflayer base

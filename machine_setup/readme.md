@@ -94,7 +94,8 @@ cargo install --locked zellij
 
 ```
 sudo apt install vim
-# TODO add additional vim plugin deps as needed
+# vim plug used to manage plugins
+# after running stow vim from dotfiles, run :PlugInstall from vim to install and enable all plugins and restart vim
 ```
 
 #### [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md) 
@@ -143,6 +144,7 @@ cd ~/workspace/dev-resources/machine_setup/dotfiles
 cat .stowrc
 # default output: --target=/home/joel
 stow [package_name] 
+
 
 stow alacritty
 # for zsh need p10k installed
