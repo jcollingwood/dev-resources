@@ -159,6 +159,10 @@ stow kanata
 
 ### [VS Code](https://code.visualstudio.com/)
 
+### [Android Studio](https://developer.android.com/studio/install)
+
+note: see docs for required dependencies install for distro
+
 ### [GIMP](https://www.gimp.org/)
 
 ### ... TODO
