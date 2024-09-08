@@ -118,7 +118,7 @@ key remapping software, use common configuration across different devices/OSes
 ```
 cargo install kanata
 # to start kanata remapp, assuming config stowed (see below)
-sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kdb
+sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd
 # todo document steps to start kanata on startup
 ```
 
