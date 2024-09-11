@@ -48,3 +48,7 @@ call plug#end()
 
 colorscheme catppuccin_mocha
 
+" to show hidden files in NERDTree plugin
+let NERDTreeShowHidden=1
+
+
