@@ -10,6 +10,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 source $HOME/.shell_profiles/.barrel
+alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
 
 # p10k theme, must be at end of .zshrc
 source ~/powerlevel10k/powerlevel10k.zsh-theme
