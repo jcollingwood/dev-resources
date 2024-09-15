@@ -8,8 +8,15 @@ export ZSH="$HOME/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
 
+# include(): source if exists
+include () {
+	[[ -f "$1" ]] && source "$1"
+}
 source $ZSH/oh-my-zsh.sh
-source $HOME/.shell_profiles/.barrel
+include $HOME/.shell_profiles/.barrel
+include $HOME/.shell_profiles/.env
+
+# alias for starting kanata with config with custom key mappings
 alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
 
 # p10k theme, must be at end of .zshrc

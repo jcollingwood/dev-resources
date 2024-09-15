@@ -96,6 +96,8 @@ cargo install --locked zellij
 sudo apt install vim
 # vim plug used to manage plugins
 # after running stow vim from dotfiles, run :PlugInstall from vim to install and enable all plugins and restart vim
+# note: depending on the system and version of vim, yank to clipboard may not work by default, if so run this command:
+sudo apt install vim-gtk
 ```
 
 #### [Neovim](https://github.com/neovim/neovim/blob/master/INSTALL.md) 
