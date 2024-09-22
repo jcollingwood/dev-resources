@@ -157,6 +157,17 @@ stow kanata
 # stow nvim # currently broken, update if using nvim
 ```
 
+### [ASDF](https://asdf-vm.com/guide/getting-started.html)
+
+Tool manager for many languages. Default zsh plugin for autocompletion is in the `.zshrc` already. See how to configure plugins below
+
+Java:
+
+```
+asdf plugin-add java https://github.com/halcyon/asdf-java.git
+asdf install java corretto-21.0.4.7.1
+```
+
 ### [Intellij CE](https://www.jetbrains.com/toolbox-app/)
 
 ### [VS Code](https://code.visualstudio.com/)

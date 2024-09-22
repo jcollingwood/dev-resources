@@ -13,7 +13,7 @@ set hlsearch
 " line padding between cursor and top/bottom of file
 set scrolloff=5
 " share vim and system clipboard
-set clipboard=unnamedplus
+set clipboard+=unnamedplus
 " set showmode=false
 " case insensitive searching unless \C or one or more capital letters in
 " search

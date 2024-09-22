@@ -6,7 +6,10 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # Standard plugins can be found in $ZSH/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+plugins=(
+	git
+	asdf
+)
 
 # include(): source if exists
 include () {
@@ -15,6 +18,8 @@ include () {
 source $ZSH/oh-my-zsh.sh
 include $HOME/.shell_profiles/.barrel
 include $HOME/.shell_profiles/.env
+
+. ~/.asdf/plugins/java/set-java-home.zsh
 
 # alias for starting kanata with config with custom key mappings
 alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
