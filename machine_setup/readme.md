@@ -168,6 +168,12 @@ asdf plugin-add java https://github.com/halcyon/asdf-java.git
 asdf install java corretto-21.0.4.7.1
 ```
 
+Gradle
+```
+asdf plugin-add gradle https://github.com/rfrancis/asdf-gradle.git
+asdf install gradle 
+```
+
 ### [Intellij CE](https://www.jetbrains.com/toolbox-app/)
 
 ### [VS Code](https://code.visualstudio.com/)
