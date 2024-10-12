@@ -11,6 +11,9 @@ plugins=(
 	asdf
 )
 
+# alias to connect to local raspberrypi
+alias sshpi='ssh pi@raspberrypi.local'
+
 # include(): source if exists
 include () {
 	[[ -f "$1" ]] && source "$1"
