@@ -157,6 +157,13 @@ stow kanata
 # stow nvim # currently broken, update if using nvim
 ```
 
+## Docker
+
+```bash
+sudo apt install docker
+sudo apt install docker-compose
+```
+
 ### [ASDF](https://asdf-vm.com/guide/getting-started.html)
 
 Tool manager for many languages. Default zsh plugin for autocompletion is in the `.zshrc` already. See how to configure plugins below
