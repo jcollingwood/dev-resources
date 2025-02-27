@@ -7,7 +7,8 @@ alias gitco='git checkout'
 alias gitbr='git branch -a'
 alias gitmerge='git pull && git merge origin/master && git status'
 # reset entire branch
-alias gitreset='git reset --hard && checkout master && git pull'
+alias gitrmaster='git reset --hard && git checkout master && git pull'
+alias gitrmain='git reset --hard && git checkout main && git pull'
 # adds specified files then displays status
 function gita {
     git add $@
