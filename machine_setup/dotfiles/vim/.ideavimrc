@@ -1,1 +1,3 @@
 source '~/.vimrc'
+
+nnoremap <leader>z :action ToggleDistractionFreeMode<CR>
