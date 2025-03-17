@@ -33,7 +33,8 @@ cd ~/Donwloads
 which unzip # should be installed
 unzip JetBrainsMono.zip
 # this will move all unzipped font .ttf files containing 'JetBrains' into the shared fonts directory
-sudo mv $(ls | JetBrains) /usr/local/share/fonts
+# may need to create this directory first...
+sudo mv $(ls | grep JetBrains) /usr/local/share/fonts
 # refresh font cache
 fc-cache -f -v
 # list fonts (optionally grep with name of desired fonts to verify in list)
@@ -74,6 +75,7 @@ sudo apt install cargo
 
 #### Alacritty [install docs](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
 
+- on more recent distros like Fedora, just install via package manager: `sudo dnf install alacritty`
 - I install alacritty via Cargo to get the latest version which uses the latest toml configuration. Default apt alacrity is older and not compatible with toml config
 - After installation, it took some work setting up cargo-installed alacritty as a recognized desktop application to launch with launcher and with os terminal shortcuts
 
@@ -85,6 +87,7 @@ cargo install alacritty
 
 #### Zellij download steps ([zellij docs](https://zellij.dev/documentation/installation))
 Note: rust/cargo installation required first
+Note: on Fedora, had to `sudo dnf install perl-core` dependency first
 ```
 cargo install --locked zellij
 # restart terminal to use zellij from path
@@ -124,6 +127,15 @@ sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd
 # todo document steps to start kanata on startup
 ```
 
+#### [thefuck](https://github.com/nvbn/thefuck)
+
+auto-fix typo or fat-fingered terminal commands or provides the correct terminal command for whatever I just botched.
+note: might as well try to be professional, aliased to `fix` in .zshrc
+
+```bash
+sudo dnf install thefuck
+```
+
 #### Dotfiles
 I like to keep all of my projects in a `workspaces` directory in my `root` directory.
 
@@ -155,6 +167,7 @@ stow zsh
 stow vim
 stow kanata
 # stow nvim # currently broken, update if using nvim
+stow zellij
 ```
 
 ## Docker

@@ -1,5 +1,5 @@
 
-[shell]
+[terminal.shell]
 program = "/bin/zsh"
 args = ["-l", "-c", "zellij"]
 
@@ -11,4 +11,6 @@ blur = true
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+
+[terminal]
 
