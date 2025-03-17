@@ -27,6 +27,9 @@ include $HOME/.shell_profiles/.env
 # alias for starting kanata with config with custom key mappings
 alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
 
+# autocorrect package alias
+eval $(thefuck --alias fix)
+
 # p10k theme, must be at end of .zshrc
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -34,3 +37,5 @@ POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 # to switch to starship instead of p10k
 # eval "$(starship init zsh)"
+
+eval $(thefuck --alias)
