@@ -75,7 +75,7 @@ sudo apt install cargo
 
 #### Alacritty [install docs](https://github.com/alacritty/alacritty/blob/master/INSTALL.md)
 
-- on more recent distros like Fedora, just instal via package manager: `sudo dnf install alacritty`
+- on more recent distros like Fedora, just install via package manager: `sudo dnf install alacritty`
 - I install alacritty via Cargo to get the latest version which uses the latest toml configuration. Default apt alacrity is older and not compatible with toml config
 - After installation, it took some work setting up cargo-installed alacritty as a recognized desktop application to launch with launcher and with os terminal shortcuts
 
