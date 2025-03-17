@@ -174,6 +174,14 @@ stow zellij
 
 - tbh, just go to docker's site and follow their installation instructions
 
+```bash
+# to start/stop docker manually
+sudo systemctl start docker
+sudo systemctl stop docker
+# to start docker automatically on system startup
+sudo systemctl enable --now docker
+```
+
 ### [ASDF](https://asdf-vm.com/guide/getting-started.html)
 
 Tool manager for many languages. Default zsh plugin for autocompletion is in the `.zshrc` already. See how to configure plugins below
