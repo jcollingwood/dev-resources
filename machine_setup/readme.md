@@ -170,12 +170,9 @@ stow kanata
 stow zellij
 ```
 
-## Docker
+## [Docker](https://docs.docker.com/engine/install/fedora/)
 
-```bash
-sudo apt install docker
-sudo apt install docker-compose
-```
+- tbh, just go to docker's site and follow their installation instructions
 
 ### [ASDF](https://asdf-vm.com/guide/getting-started.html)
 
