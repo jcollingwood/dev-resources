@@ -127,6 +127,15 @@ sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd
 # todo document steps to start kanata on startup
 ```
 
+#### [thefuck](https://github.com/nvbn/thefuck)
+
+auto-fix typo or fat-fingered terminal commands or provides the correct terminal command for whatever I just botched.
+note: might as well try to be professional, aliased to `fix` in .zshrc
+
+```bash
+sudo dnf install thefuck
+```
+
 #### Dotfiles
 I like to keep all of my projects in a `workspaces` directory in my `root` directory.
 
