@@ -186,6 +186,8 @@ sudo systemctl enable --now docker
 
 Tool manager for many languages. Default zsh plugin for autocompletion is in the `.zshrc` already. See how to configure plugins below
 
+Note: working on evaluating best for distros like Fedora
+
 Java:
 
 ```
