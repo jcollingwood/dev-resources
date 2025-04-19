@@ -64,7 +64,14 @@ Plugins:
 
 
 Themes:
-- [powerlevel10k](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#installation)
+- (old) [powerlevel10k](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#installation)
+- [starship](https://starship.rs/guide/)
+
+```
+# sets pure prompt as starship default
+starship preset pure-preset -o ~/.config/starship.toml
+# todo explore more prompt customizations
+```
 
 
 #### Rust/cargo (required for certain dependencies)
@@ -117,14 +124,38 @@ sudo make install
 sudo apt install ripgrep
 ```
 
-#### [Kanata]()
+#### [Kanata](https://github.com/jtroo/kanata?tab=readme-ov-file)
 
 key remapping software, use common configuration across different devices/OSes
+
+basic option to set up and install with cargo:
 ```
 cargo install kanata
 # to start kanata remapp, assuming config stowed (see below)
 sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd
 # todo document steps to start kanata on startup
+```
+
+alternate way I'm working on just downloading the kanata executable and moving to the `/etc/bin/kanata` location.
+
+```
+# add setup commands if figured out systemctl start 
+``` 
+
+system configuration to run kanata on startup and/or in the background
+```service
+[Unit]
+Description=Kanata Service
+Requires=local-fs.target
+After=local-fs.target
+
+[Service]
+ExecStartPre=/usr/bin/modprobe uinput
+ExecStart=/home/joel/.cargo/bin/kanata -c /home/joel/.config/kanata/config.kbd
+Restart=no
+
+[Install]
+WantedBy=sysinit.target
 ```
 
 #### [thefuck](https://github.com/nvbn/thefuck)

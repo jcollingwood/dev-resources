@@ -1,6 +1,6 @@
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -22,7 +22,7 @@ source $ZSH/oh-my-zsh.sh
 include $HOME/.shell_profiles/.barrel
 include $HOME/.shell_profiles/.env
 
-. ~/.asdf/plugins/java/set-java-home.zsh
+# . ~/.asdf/plugins/java/set-java-home.zsh
 
 # alias for starting kanata with config with custom key mappings
 alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
@@ -31,9 +31,9 @@ alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
 eval $(thefuck --alias fix)
 
 # p10k theme, must be at end of .zshrc
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+# source ~/powerlevel10k/powerlevel10k.zsh-theme
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 # to switch to starship instead of p10k
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
