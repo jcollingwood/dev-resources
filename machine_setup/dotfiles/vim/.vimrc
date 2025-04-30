@@ -8,7 +8,7 @@ let mapleader=" "
 set number
 set relativenumber
 " highlight line cursor is currently on
-" set cursorline
+set cursorline
 " hi CursorLine cterm=bold 
 " enable mouse mode
 set mouse=a
