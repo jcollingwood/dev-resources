@@ -13,6 +13,7 @@ plugins=(
 
 # alias to connect to local raspberrypi
 alias sshpi='ssh pi@raspberrypi.local'
+# note: if using nonstandard port add -p 1234 to ssh command
 
 # include(): source if exists
 include () {
