@@ -1,3 +1,48 @@
+#!/bin/bash
+# Porkbun DDNS Update Script
+
+set -euo pipefail  # Exit on error, undefined vars, pipe failures
+
+# Configuration
+CONFIG_FILE="$HOME/.config/ddns/config"
+LOG_FILE="$HOME/.config/ddns/ddns.log"
+IP_CACHE_FILE="$HOME/.config/ddns/last_ip"
+MAX_LOG_SIZE=1048576  # 1MB
+
+# Function to log messages
+log_message() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S'): $1" >> "$LOG_FILE"
+}
+
+# Function to rotate log if too large
+rotate_log() {
+    if [[ -f "$LOG_FILE" && $(stat -f%z "$LOG_FILE" 2>/dev/null || stat -c%s "$LOG_FILE" 2>/dev/null) -gt $MAX_LOG_SIZE ]]; then
+        mv "$LOG_FILE" "${LOG_FILE}.old"
+        log_message "Log rotated"
+    fi
+}
+
+# Check if config exists
+if [[ ! -f "$CONFIG_FILE" ]]; then
+    log_message "ERROR: Config file not found at $CONFIG_FILE"
+    exit 1
+fi
+
+# Source the config
+source "$CONFIG_FILE"
+
+# Validate required variables
+if [[ -z "${API_KEY:-}" || -z "${SECRET_KEY:-}" || -z "${DOMAIN:-}" ]]; then
+    log_message "ERROR: Missing required configuration (API_KEY, SECRET_KEY, or DOMAIN)"
+    exit 1
+fi
+
+# Set default subdomain if not specified
+SUBDOMAIN="${SUBDOMAIN:-@}"
+
+# Rotate log if needed
+rotate_log
+
 # Get current public IP with multiple fallbacks
 get_public_ip() {
     local ip=""
@@ -34,28 +79,8 @@ else
 fi
 
 # Prepare API request
-API_URL="https://api.porkbun.com/api/json/v3/dns/retrieveByNameType/$DOMAIN/A"
-BASE_REQUEST="{\"secretapikey\":\"$SECRET_KEY\",\"apikey\":\"$API_KEY\"}" 
-
 EDIT_API_URL="https://api.porkbun.com/api/json/v3/dns/editByNameType/$DOMAIN/A"
 REQUEST="{\"secretapikey\":\"$SECRET_KEY\",\"apikey\":\"$API_KEY\",\"content\":\"$CURRENT_IP\"}"
-
-# retrieve existing record to check if update is needed
-existing_response=$(curl -s --connect-timeout 10 --max-time 30 \
-    -X GET "$API_URL" \
-    -H "Content-Type: application/json" \
-    -d $BASE_REQUEST \
-    2>/dev/null)
-if [[ $? -ne 0 ]]; then
-    log_message "ERROR: Failed to connect to Porkbun API for retrieval"
-    exit 1
-fi
-# Parse existing record
-EXISTING_IP=$(echo "$existing_response" | jq -r '.data.content // empty')
-if [[ "$EXISTING_IP" == "$CURRENT_IP" ]]; then
-    log_message "Existing record already matches current IP: $EXISTING_IP"
-    exit 0
-fi
 
 # Make API request
 response=$(curl -s --connect-timeout 10 --max-time 30 \
