@@ -60,6 +60,8 @@ Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'vim-airline/vim-airline'
 " file tree
 Plug 'preservim/nerdtree'
+" fzf pluging
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " lsp stuff
 Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings' " auto-configure for many lsps

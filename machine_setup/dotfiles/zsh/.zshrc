@@ -31,6 +31,8 @@ alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
 # autocorrect package alias
 eval $(thefuck --alias fix)
 
+source <(fzf --zsh)
+
 # p10k theme, must be at end of .zshrc
 # source ~/powerlevel10k/powerlevel10k.zsh-theme
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -38,3 +40,7 @@ eval $(thefuck --alias fix)
 
 # to switch to starship instead of p10k
 eval "$(starship init zsh)"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
