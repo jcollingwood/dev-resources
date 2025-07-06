@@ -167,6 +167,14 @@ note: might as well try to be professional, aliased to `fix` in .zshrc
 sudo dnf install thefuck
 ```
 
+#### [fzf](https://github.com/junegunn/fzf)
+
+fuzzy find cli thing
+
+```bash
+sudo dnf install fzf
+```
+
 #### Dotfiles
 I like to keep all of my projects in a `workspaces` directory in my `root` directory.
 

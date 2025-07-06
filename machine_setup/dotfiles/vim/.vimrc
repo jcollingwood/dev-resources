@@ -60,6 +60,15 @@ Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'vim-airline/vim-airline'
 " file tree
 Plug 'preservim/nerdtree'
+" fzf pluging
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" lsp stuff
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings' " auto-configure for many lsps
+Plug 'prabirshrestha/asyncomplete.vim' " async completion
+Plug 'prabirshrestha/asyncomplete-lsp.vim' " lsp completion
+" copilot
+Plug 'github/copilot.vim'
 
 call plug#end()
 " end plugins >>>>>>>>
@@ -76,5 +85,8 @@ nnoremap <leader>t :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | call feedkeys(":quit\<CR>:\<BS>") | endif
+
+""" LSP configurations
+
 
 
