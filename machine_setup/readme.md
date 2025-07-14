@@ -252,6 +252,18 @@ note: see docs for required dependencies install for distro
 
 ### ... TODO
 
+## AI Stuff
+
+### [ollama](https://ollama.com/)
+
+todo document custom setup and tweaks
+
+### [OpenCode](https://opencode.ai/)
+
+todo document custom setup and tweaks
+
+intend to have custom tweaks to run against local ollama models
+
 
 ## Gaming Setup
 
