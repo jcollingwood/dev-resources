@@ -207,6 +207,7 @@ stow vim
 stow kanata
 # stow nvim # currently broken, update if using nvim
 stow zellij
+stow opencode
 ```
 
 ## [Docker](https://docs.docker.com/engine/install/fedora/)

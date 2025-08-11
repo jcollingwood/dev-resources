@@ -47,3 +47,11 @@ export SDKMAN_DIR="$HOME/.sdkman"
 
 # opencode
 export PATH=/home/joel/.opencode/bin:$PATH
+
+# opencode
+export PATH=/home/joel/bin:$PATH
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/joel/.lmstudio/bin"
+# End of LM Studio CLI section
+

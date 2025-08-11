@@ -1,0 +1,41 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "opencode",
+  "model": "lmstudio/qwen3-coder:30b",
+  "autoupdate": true,
+  "provider": {
+    "lmstudio": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "LM Studio (local)",
+      "options": {
+	"baseURL": "http://localhost:1234/v1"
+      },
+      "models": {
+	"qwen3-coder:30b": {
+	  "name": "Qwen-3 Coder (30B)",
+	  "tools": true
+	}
+      }
+    },
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://localhost:11434/v1"
+      },
+      "models": {
+        "qwen3:8b": {
+	  "name": "Qwen-3 (8B)",
+	  "tools": true
+	},
+	"deepseek-r1:8b": {
+	  "name": "DeepSeek R1 (8B)",
+	  "tools": true
+	},
+        "llama3.2:3b": {
+	  "name": "Llama 3.2 (3B)",
+	  "tools": true
+	}
+      }
+    }
+  }
+}
