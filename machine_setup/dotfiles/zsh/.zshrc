@@ -29,9 +29,9 @@ include $HOME/.shell_profiles/.env
 # alias for starting kanata with config with custom key mappings
 alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
 
-# autocorrect package alias
-# only run if thefuck is installed
-if command -v thefuck >/dev/null 2>&1; then
+# autocorrect package aliasj
+# if thefuck is installed, alias `fix` to run it
+if [ -x "$(command -v thefuck)" ]; then
 	eval $(thefuck --alias fix)
 fi
 
@@ -43,3 +43,10 @@ eval "$(starship init zsh)"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# opencode
+export PATH=/home/joel/.opencode/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
