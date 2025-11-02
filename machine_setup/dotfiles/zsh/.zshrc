@@ -9,11 +9,12 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(
 	git
 	asdf
+	vi-mode
 )
 
-# alias to connect to local raspberrypi
-alias sshpi='ssh pi@raspberrypi.local'
-# note: if using nonstandard port add -p 1234 to ssh command
+# load local bin to path - mainly for goose?
+export PATH="$HOME/.local/bin:$PATH"
+
 
 # include(): source if exists
 include () {
@@ -29,14 +30,12 @@ include $HOME/.shell_profiles/.env
 alias kanata="sudo ~/.cargo/bin/kanata -c ~/.config/kanata/config.kbd"
 
 # autocorrect package alias
-eval $(thefuck --alias fix)
+# only run if thefuck is installed
+if command -v thefuck >/dev/null 2>&1; then
+	eval $(thefuck --alias fix)
+fi
 
 source <(fzf --zsh)
-
-# p10k theme, must be at end of .zshrc
-# source ~/powerlevel10k/powerlevel10k.zsh-theme
-# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 # to switch to starship instead of p10k
 eval "$(starship init zsh)"
