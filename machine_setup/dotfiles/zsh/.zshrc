@@ -2,6 +2,8 @@
 #  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 #fi
 
+export XDG_DATA_DIRS="/var/lib/flatpak/exports/share/:/home/joel/.local/share/flatpak/exports/share/:$XDG_DATA_DIRS"
+
 export ZSH="$HOME/.oh-my-zsh"
 
 # Standard plugins can be found in $ZSH/plugins/

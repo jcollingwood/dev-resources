@@ -92,6 +92,10 @@ apt install cmake pkg-config libfreetype6-dev libfontconfig1-dev libxcb-xfixes0-
 cargo install alacritty
 ```
 
+#### Ghostty ([ghostty docs](ghostty.org))
+
+terminal - load config from stow
+
 #### Zellij download steps ([zellij docs](https://zellij.dev/documentation/installation))
 Note: rust/cargo installation required first
 Note: on Fedora, had to `sudo dnf install perl-core` dependency first
@@ -207,6 +211,7 @@ stow vim
 stow kanata
 # stow nvim # currently broken, update if using nvim
 stow zellij
+stow ghostty
 ```
 
 ## [Docker](https://docs.docker.com/engine/install/fedora/)
