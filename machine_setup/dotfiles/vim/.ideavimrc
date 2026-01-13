@@ -1,3 +1,4 @@
 source '~/.vimrc'
 
 nnoremap <leader>z :action ToggleDistractionFreeMode<CR>
+nnoremap <leader>m :action MoveEditorToOppositeTabGroup<CR>
