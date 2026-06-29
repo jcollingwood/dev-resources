@@ -21,6 +21,10 @@
 		"name": "JC Coding Wizard"
        	},
         { 
+		"id": "jc-deepseek-r1",
+		"name": "JC DeepSeek R1"
+       	},
+        { 
 		"id": "jc-mistral-buddy",
 		"name": "JC Mistral Buddy"
        	}
@@ -34,6 +38,10 @@
         { 
 		"id": "jc-qwen3-coder",
 		"name": "JC Coding Wizard"
+       	},
+        { 
+		"id": "jc-deepseek-r1",
+		"name": "JC DeepSeek R1"
        	},
         { 
 		"id": "jc-mistral-buddy",
