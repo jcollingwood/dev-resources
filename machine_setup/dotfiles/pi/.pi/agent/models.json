@@ -11,22 +11,22 @@
        	}
       ]
     },
-    "ollama": {
+    "ollama-fedora": {
       "baseUrl": "http://fedora:11434/v1",
       "api": "openai-completions",
       "apiKey": "ollama",
       "models": [
         { 
 		"id": "jc-qwen3-coder",
-		"name": "JC Coding Wizard"
+		"name": "JC Coding Wizard (remote)"
        	},
         { 
 		"id": "jc-deepseek-r1",
-		"name": "JC DeepSeek R1"
+		"name": "JC DeepSeek R1 (remote)"
        	},
         { 
 		"id": "jc-mistral-buddy",
-		"name": "JC Mistral Buddy"
+		"name": "JC Mistral Buddy (remote)"
        	}
       ]
     },

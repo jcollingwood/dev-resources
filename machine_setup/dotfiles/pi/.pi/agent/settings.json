@@ -1,10 +1,17 @@
 {
-  "lastChangelogVersion": "0.80.2",
-  "theme": "catppuccin-tui-mocha",
-  "defaultProvider": "ollama",
-  "defaultModel": "jc-qwen3-coding-wizard",
+  "theme": "catppuccin-mocha",
+  "extensions": [],
+  "statusBar": {
+    "show": true,
+    "elements": [
+      "model",
+      "working"
+    ]
+  },
   "packages": [
-    "npm:pi-catppuccin-tui",
-    "npm:@piotr-oles/pi-reflag"
+    "npm:@hypabolic/pi-hypa",
+    "npm:context-mode",
+    "npm:pi-subagents",
+    "npm:@juicesharp/rpiv-todo"
   ]
 }
