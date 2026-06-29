@@ -1,5 +1,8 @@
 **/lazy-lock.json
 **.un~
 **.swp
+**/*~
 
 **/.env
+
+**/pi/.pi/agent/sessions/**

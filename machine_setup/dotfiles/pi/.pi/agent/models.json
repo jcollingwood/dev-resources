@@ -10,6 +10,36 @@
 		"name": "Qwen3 Coder Next (local)"
        	}
       ]
+    },
+    "ollama": {
+      "baseUrl": "http://fedora:11434/v1",
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "models": [
+        { 
+		"id": "jc-qwen3-coder",
+		"name": "JC Coding Wizard"
+       	},
+        { 
+		"id": "jc-mistral-buddy",
+		"name": "JC Mistral Buddy"
+       	}
+      ]
+    },
+    "ollama": {
+      "baseUrl": "http://localhost:11434/v1",
+      "api": "openai-completions",
+      "apiKey": "ollama",
+      "models": [
+        { 
+		"id": "jc-qwen3-coder",
+		"name": "JC Coding Wizard"
+       	},
+        { 
+		"id": "jc-mistral-buddy",
+		"name": "JC Mistral Buddy"
+       	}
+      ]
     }
   }
 }

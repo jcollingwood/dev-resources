@@ -1,4 +1,10 @@
 {
-  "lastChangelogVersion": "0.71.1",
-  "theme": "catppuccin-mocha.json"
+  "lastChangelogVersion": "0.80.2",
+  "theme": "catppuccin-tui-mocha",
+  "defaultProvider": "ollama",
+  "defaultModel": "jc-qwen3-coding-wizard",
+  "packages": [
+    "npm:pi-catppuccin-tui",
+    "npm:@piotr-oles/pi-reflag"
+  ]
 }

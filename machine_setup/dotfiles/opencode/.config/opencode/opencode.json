@@ -30,9 +30,30 @@
     },
     "ollama": {
       "models": {
-        "qwen3.6": {
+        "jc-qwen3-coder": {
           "_launch": true,
-          "name": "qwen3.6"
+          "name": "jc-qwen3-coder"
+        },
+        "jc-mistral-buddy": {
+          "_launch": true,
+          "name": "jc-mistral-buddy"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://fedora:11434/v1"
+      }
+    },
+    "ollama": {
+      "models": {
+        "jc-qwen3-coder": {
+          "_launch": true,
+          "name": "jc-qwen3-coder"
+        },
+        "jc-mistral-buddy": {
+          "_launch": true,
+          "name": "jc-mistral-buddy"
         }
       },
       "name": "Ollama",
