@@ -2,3 +2,4 @@
 ENV_VARS_FILE=$HOME/.env && test -f $ENV_VARS_FILE && source $ENV_VARS_FILE
 
 source $HOME/.shell_profiles/.git_profile
+source $HOME/.shell_profiles/.scripts

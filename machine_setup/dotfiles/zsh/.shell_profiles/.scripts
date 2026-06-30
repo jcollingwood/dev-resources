@@ -1,0 +1,10 @@
+
+# pipe question through to ollama  
+q() {
+  curl -s http://fedora:11434/api/generate -d "{
+    \"model\": \"llama3.2:3b\",
+    \"prompt\": \"Answer in one or two sentences, no preamble: $*\",
+    \"stream\": false,
+    \"options\": {\"num_predict\": 100, \"temperature\": 0.3}
+  }" | python3 -c "import sys,json;print(json.load(sys.stdin)['response'])"
+}

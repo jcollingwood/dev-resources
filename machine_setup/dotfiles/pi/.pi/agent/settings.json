@@ -10,8 +10,8 @@
   },
   "packages": [
     "npm:@hypabolic/pi-hypa",
-    "npm:context-mode",
     "npm:pi-subagents",
     "npm:@juicesharp/rpiv-todo"
-  ]
+  ],
+  "lastChangelogVersion": "0.80.2"
 }
