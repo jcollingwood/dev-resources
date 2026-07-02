@@ -28,7 +28,7 @@
         }
       }
     },
-    "ollama": {
+    "ollama-fedora": {
       "models": {
         "jc-qwen3-coder": {
           "_launch": true,
@@ -43,7 +43,7 @@
           "name": "jc-mistral-buddy"
         }
       },
-      "name": "Ollama",
+      "name": "Ollama (fedora)",
       "npm": "@ai-sdk/openai-compatible",
       "options": {
         "baseURL": "http://fedora:11434/v1"

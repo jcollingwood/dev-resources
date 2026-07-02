@@ -1,9 +1,8 @@
-
 # pipe question through to ollama  
 q() {
   setopt local_options nomonitor
   local model="gemma4:12b"
-  local prompt="Answer in one or two sentences, no preamble:"
+  local prompt="Answer in one or two sentences, no preamble:"  
   local q="$*"
 
   local green=$'\033[38;2;166;227;161m'   # Green  #a6e3a1
@@ -19,6 +18,35 @@ q() {
   local reset=$'\033[0m'
   echo ""
 
+  # Health check - verify ollama server is ready
+  local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
+  local i=0
+  tput civis  # hide cursor
+  printf "\r${bar}┃${reset} ${text}%s connecting...${reset}" "${spin:$i:1}"
+  
+  local max_attempts=5
+  local attempt=0
+  local connected=false
+  
+  while [ $attempt -lt $max_attempts ]; do
+    if curl -sf http://fedora:11434/api/tags >/dev/null; then
+      connected=true
+      break
+    fi
+    
+    i=$(( (i+1) % ${#spin} ))
+    printf "\r${bar}┃${reset} ${text}%s connecting...${reset}" "${spin:$i:1}"
+    sleep 0.5
+    attempt=$((attempt + 1))
+  done
+  
+  tput cnorm  # restore cursor
+  if [ "$connected" = false ]; then
+    echo ""
+    echo "${bar}┃${reset} ${text}Failed to connect to Ollama server after $max_attempts attempts.${reset}"
+    return 1
+  fi
+
   # run the request in the background, capture output to a temp file
   local tmpfile=$(mktemp)
   (curl -s http://fedora:11434/api/chat -d "$(jq -n --arg m "$model" --arg p "$q" '{
@@ -33,8 +61,7 @@ q() {
   # echo "${bar}┃${reset} ${gray}${model}"
 
   # spinner
-  local spin='⠋⠙⠹⠸⠼⠴⠦⠧⠇⠏'
-  local i=0
+  i=0
   tput civis  # hide cursor
   while kill -0 $pid 2>/dev/null; do
     i=$(( (i+1) % ${#spin} ))
@@ -50,4 +77,3 @@ q() {
   echo "$answer" | fold -s -w 76 | sed "s/^/${bar}┃${reset} ${text}/"
   echo -n "$reset"
 }
-

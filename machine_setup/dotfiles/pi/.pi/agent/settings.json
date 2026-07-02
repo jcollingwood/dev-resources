@@ -11,7 +11,10 @@
   "packages": [
     "npm:@hypabolic/pi-hypa",
     "npm:pi-subagents",
-    "npm:@juicesharp/rpiv-todo"
+    "npm:@juicesharp/rpiv-todo",
+    "npm:@gotgenes/pi-permission-system"
   ],
-  "lastChangelogVersion": "0.80.2"
+  "lastChangelogVersion": "0.80.3",
+  "defaultProvider": "ollama-fedora",
+  "defaultModel": "jc-qwen3-coder"
 }
