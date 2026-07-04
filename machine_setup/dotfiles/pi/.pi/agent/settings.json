@@ -15,6 +15,6 @@
     "npm:@gotgenes/pi-permission-system"
   ],
   "lastChangelogVersion": "0.80.3",
-  "defaultProvider": "ollama",
-  "defaultModel": "jc-codestral"
+  "defaultProvider": "ollama-fedora",
+  "defaultModel": "jc-qwen3-coder"
 }

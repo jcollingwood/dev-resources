@@ -1,16 +1,5 @@
 {
   "providers": {
-    "ollama": {
-      "baseUrl": "http://localhost:1234/v1",
-      "api": "openai-completions",
-      "apiKey": "lmstudio",
-      "models": [
-        { 
-		"id": "qwen/qwen3-coder-next",
-		"name": "Qwen3 Coder Next (local)"
-       	}
-      ]
-    },
     "ollama-fedora": {
       "baseUrl": "http://fedora:11434/v1",
       "api": "openai-completions",
@@ -18,19 +7,19 @@
       "models": [
         { 
 		"id": "jc-qwen3-coder",
-		"name": "JC Coder (remote)"
+		"name": "jc-qwen3-coder (remote)"
+       	},
+	{
+		"id": "jc-qwen3.6",
+		"name": "jc-qwen3.6 (remote)"
        	},
         { 
 		"id": "jc-gemma4",
 		"name": "jc-gemma4 (remote)"
        	},
         { 
-		"id": "jc-deepseek-coder-v2",
-		"name": "jc-deepseek-coder-v2 (remote)"
-       	},
-        { 
-		"id": "jc-deepseek-r1",
-		"name": "JC DeepSeek R1 (remote)"
+		"id": "gpt-oss:20b",
+		"name": "gpt-oss:20b (remote)"
        	}
       ]
     }

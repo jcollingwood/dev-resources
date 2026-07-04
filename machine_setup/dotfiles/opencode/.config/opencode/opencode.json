@@ -2,49 +2,15 @@
   "$schema": "https://opencode.ai/config.json",
   "model": "qwen/qwen3-coder-next",
   "provider": {
-    "lmstudio": {
-      "name": "LM Studio (local)",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://localhost:1234/v1"
-      },
-      "models": {
-        "qwen/qwen3-coder-next": {
-          "_launch": true,
-          "name": "Qwen3 Coder Next (local)"
-        }
-      }
-    },
-    "lmstudio": {
-      "name": "LM Studio (desktop)",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://fedora:1234/v1"
-      },
-      "models": {
-        "qwen/qwen3-coder-next": {
-          "_launch": true,
-          "name": "Qwen3 Coder Next (desktop)"
-        }
-      }
-    },
     "ollama-fedora": {
       "models": {
         "jc-qwen3-coder": {
           "_launch": true,
           "name": "jc-qwen3-coder"
         },
-        "jc-deepseek-r1": {
-          "_launch": true,
-          "name": "jc-deepseek-r1"
-        },
         "jc-gemma4": { 
           "_launch": true,
           "name": "jc-gemma4"
-       	},
-        "jc-deepseek-coder-v2": { 
-          "_launch": true,
-          "name": "jc-deepseek-coder-v2"
        	}
       },
       "name": "Ollama (fedora)",
