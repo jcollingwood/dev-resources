@@ -38,36 +38,19 @@
           "_launch": true,
           "name": "jc-deepseek-r1"
         },
-        "jc-mistral-buddy": {
+        "jc-gemma4": { 
           "_launch": true,
-          "name": "jc-mistral-buddy"
-        }
+          "name": "jc-gemma4"
+       	},
+        "jc-deepseek-coder-v2": { 
+          "_launch": true,
+          "name": "jc-deepseek-coder-v2"
+       	}
       },
       "name": "Ollama (fedora)",
       "npm": "@ai-sdk/openai-compatible",
       "options": {
         "baseURL": "http://fedora:11434/v1"
-      }
-    },
-    "ollama": {
-      "models": {
-        "jc-qwen3-coder": {
-          "_launch": true,
-          "name": "jc-qwen3-coder"
-        },
-        "jc-deepseek-r1": {
-          "_launch": true,
-          "name": "jc-deepseek-r1"
-        },
-        "jc-mistral-buddy": {
-          "_launch": true,
-          "name": "jc-mistral-buddy"
-        }
-      },
-      "name": "Ollama",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://127.0.0.1:11434/v1"
       }
     }
   }

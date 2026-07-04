@@ -67,8 +67,11 @@ Plug 'prabirshrestha/vim-lsp'
 Plug 'mattn/vim-lsp-settings' " auto-configure for many lsps
 Plug 'prabirshrestha/asyncomplete.vim' " async completion
 Plug 'prabirshrestha/asyncomplete-lsp.vim' " lsp completion
+" ai
 " copilot
-Plug 'github/copilot.vim'
+" Plug 'github/copilot.vim'
+" ollama
+Plug 'gergap/vim-ollama'
 
 call plug#end()
 " end plugins >>>>>>>>

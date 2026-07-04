@@ -18,34 +18,19 @@
       "models": [
         { 
 		"id": "jc-qwen3-coder",
-		"name": "JC Coding Wizard (remote)"
+		"name": "JC Coder (remote)"
+       	},
+        { 
+		"id": "jc-gemma4",
+		"name": "jc-gemma4 (remote)"
+       	},
+        { 
+		"id": "jc-deepseek-coder-v2",
+		"name": "jc-deepseek-coder-v2 (remote)"
        	},
         { 
 		"id": "jc-deepseek-r1",
 		"name": "JC DeepSeek R1 (remote)"
-       	},
-        { 
-		"id": "jc-mistral-buddy",
-		"name": "JC Mistral Buddy (remote)"
-       	}
-      ]
-    },
-    "ollama": {
-      "baseUrl": "http://localhost:11434/v1",
-      "api": "openai-completions",
-      "apiKey": "ollama",
-      "models": [
-        { 
-		"id": "jc-qwen3-coder",
-		"name": "JC Coding Wizard"
-       	},
-        { 
-		"id": "jc-deepseek-r1",
-		"name": "JC DeepSeek R1"
-       	},
-        { 
-		"id": "jc-mistral-buddy",
-		"name": "JC Mistral Buddy"
        	}
       ]
     }
