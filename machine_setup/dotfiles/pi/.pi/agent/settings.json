@@ -16,5 +16,5 @@
   ],
   "lastChangelogVersion": "0.80.3",
   "defaultProvider": "ollama-fedora",
-  "defaultModel": "jc-qwen3-coder"
+  "defaultModel": "jc-ornith:9b-q8_0"
 }

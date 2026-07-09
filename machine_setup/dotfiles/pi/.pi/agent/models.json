@@ -18,8 +18,8 @@
 		"name": "jc-gemma4 (remote)"
        	},
         { 
-		"id": "gpt-oss:20b",
-		"name": "gpt-oss:20b (remote)"
+		"id": "jc-ornith:9b-q8_0",
+		"name": "jc-ornith:9b-q8_0 (remote)"
        	}
       ]
     }
