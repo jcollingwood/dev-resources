@@ -1,5 +1,59 @@
 {
   "debugLog": false,
   "permissionReviewLog": true,
-  "yoloMode": false
+  "yoloMode": false,
+  "permission": {
+    "*": "allow",
+    "path": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    },
+    "bash": {
+      "*": "allow",
+      "rm -rf *": "ask",
+      "sudo *": "ask"
+    },
+    "read": {
+      "*": "allow"
+    },
+    "edit": {
+      "*": "ask"
+    },
+    "write": {
+      "*": "ask"
+    },
+    "hypa_shell": {
+      "*": "ask"
+    },
+    "hypa_read": {
+      "*": "allow"
+    },
+    "hypa_grep": {
+      "*": "allow"
+    },
+    "hypa_find": {
+      "*": "allow"
+    },
+    "hypa_ls": {
+      "*": "allow"
+    },
+    "todo": {
+      "*": "allow"
+    },
+    "wait": {
+      "*": "allow"
+    },
+    "subagent": {
+      "*": "allow"
+    },
+    "intercome": {
+      "*": "allow"
+    },
+    "tell_joek": {
+      "*": "deny"
+    },
+    "external_directory": "ask"
+  }
 }
