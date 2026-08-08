@@ -7,3 +7,4 @@
 **/.env
 
 **/pi/.pi/agent/sessions/**
+**/pi/.pi/agent/run-history.jsonl

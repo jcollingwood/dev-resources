@@ -6,12 +6,16 @@
       "apiKey": "ollama",
       "models": [
         { 
-		"id": "jc-qwen3-coder",
-		"name": "jc-qwen3-coder (remote)"
+		"id": "jc-qwen3-coder:30b",
+		"name": "jc-qwen3-coder:30b (remote)"
+       	},
+        { 
+		"id": "jc-qwen3-coder-next:q4_K_M",
+		"name": "jc-qwen3-coder-next:q4_K_M (remote)"
        	},
 	{
-		"id": "jc-qwen3.6",
-		"name": "jc-qwen3.6 (remote)"
+		"id": "jc-qwen3.6:27b",
+		"name": "jc-qwen3.6:27b (remote)"
        	},
         { 
 		"id": "jc-gemma4",
@@ -20,6 +24,10 @@
         { 
 		"id": "jc-ornith:9b-q8_0",
 		"name": "jc-ornith:9b-q8_0 (remote)"
+       	},
+        { 
+		"id": "jc-ornith:9b-bf16",
+		"name": "jc-ornith:9b-bf16 (remote)"
        	}
       ]
     }

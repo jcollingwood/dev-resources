@@ -15,7 +15,7 @@
     "npm:@gotgenes/pi-permission-system",
     "npm:pi-intercom"
   ],
-  "lastChangelogVersion": "0.80.6",
+  "lastChangelogVersion": "0.83.0",
   "defaultProvider": "ollama-fedora",
-  "defaultModel": "jc-ornith:9b-q8_0"
+  "defaultModel": "jc-qwen3-coder-next:q4_K_M"
 }
