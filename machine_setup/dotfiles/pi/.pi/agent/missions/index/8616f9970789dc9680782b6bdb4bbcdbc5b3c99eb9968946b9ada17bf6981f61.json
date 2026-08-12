@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "missionId": "b233666f-2dcc-4259-b3eb-c5d60dd4aa2d",
+  "projectRoot": "/home/joel/workspaces/jc-fantasy",
+  "recordPath": "/home/joel/workspaces/jc-fantasy/.pi/subagents/missions/b233666f-2dcc-4259-b3eb-c5d60dd4aa2d.json",
+  "title": "Analyze how to implement a button that downloads raw Sleeper players from database as JSON. Need ...",
+  "status": "failed",
+  "updatedAt": "2026-08-12T00:35:54.446Z",
+  "lastRunId": "16172d0d-cf82-4604-883d-c42421b322ce"
+}

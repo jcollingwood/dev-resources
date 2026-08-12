@@ -13,6 +13,22 @@
 		"id": "jc-qwen3-coder-next:q4_K_M",
 		"name": "jc-qwen3-coder-next:q4_K_M (remote)"
        	},
+        { 
+		"id": "jc-qwen3.6:35b-a3b",
+		"name": "jc-qwen3.6:35b-a3b (remote)"
+       	},
+        { 
+		"id": "jc-qwen3.6:35b-a3b-q8_0",
+		"name": "jc-qwen3.6:35b-a3b-q8_0 (remote)"
+       	},
+        { 
+		"id": "jc-laguna-xs-2.1:q8_0",
+		"name": "jc-laguna-xs-2.1:q8_0 (remote)"
+       	},
+        { 
+		"id": "jc-nemotron-3.5-lightning:30b-a3b",
+		"name": "jc-nemotron-3.5-lightning:30b-a3b (remote)"
+       	},
 	{
 		"id": "jc-qwen3.6:27b",
 		"name": "jc-qwen3.6:27b (remote)"
