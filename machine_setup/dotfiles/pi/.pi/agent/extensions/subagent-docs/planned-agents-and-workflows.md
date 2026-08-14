@@ -1,0 +1,10 @@
+# Plan — New Subagents & Orchestrator Workflows  
+_Breaking complex tasks into layered agent chains._
+
+## Scouting Recap
+- **Agents** are `.md` files in `~/.pi/agent/agents/*.md`. YAML frontmatter (`name`, `description`, `tools`, optionally `model`) + system prompt text after triple-dashes.
+- **Workflows (prompts)** live at `~/.pi/agencies/prompts*.md`: single-file `.md` with a `- description: ... "---\n"` header, then instructions that tell your LLM to invoke the subagent tool in chain/single/parallel modes with `{previous}` placeholders passing output between steps.
+- Agents are discovered fresh on each invocation — no restarts needed!
+
+## Your Available Models (from `~/.pi/agencies/models.js`)  
+Fast→Strong: JC-qwen3-coder-next → JC-laguna-xs21-small_quantized, jc-nemotron-mini_small_quantized_,JC-quyen-slim-chat_Q5_K_M__smaller_variant_(Q78-bit_compressed_0.9_threshold),jc_nemorin4-mini-QW_quant(16GB_model_at_3~4B_params_for_speedy_quick_editing_operations_without_needing_much_processing_power_also_limited_by_max_tokens_set_per_request_timeout_limits_imposed_remotely_running_servers_hosted_faraway_datacenters_across_internet_cloud_networks_wildly_varying_latency_from_subten_ms_to_thousands_of_Milliseconds_Which_Could_Be_Problematic_For_Real_Time_Applications_Requiring_Rapid_Feedback_Loops_Between_User_Input_and_System_Response_Among_Other_Possible_Challenges_Arising_From_Dealing_with_Long_Distance_Communication_Pathways_Involving_Intermediary_Nodes_Such_as_Routers_Switches_Cables_Towers_Repeaters_Etcetera_Multiplying_Each_Stages_Adding_Delay_To_Total_Latency_Value_Getting_Extracted_Back_from_End_Response_Packet_Returning_via_Alpine_Trail_Completed_Transmission_Pathway_Traceable_by_Applications_Designated_for_Monitoring_Profiling_Troubleshooting_Optimization_Performance_Analysis_Debugging_Investigation_Findings_Report_Generation_Summarization_Curation_Sharing_Discovery_Search_Indexing_Metadata_Tagging_Classification_Filtering_Bucketing_Grouping_Clustering Segmentation Partition

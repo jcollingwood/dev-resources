@@ -11,9 +11,10 @@
   "packages": [
     "npm:@hypabolic/pi-hypa",
     "npm:@juicesharp/rpiv-todo",
-    "npm:@gotgenes/pi-permission-system"
+    "npm:@gotgenes/pi-permission-system",
+    "npm:pi-token-speed"
   ],
-  "lastChangelogVersion": "0.84.1",
+  "lastChangelogVersion": "0.84.2",
   "defaultProvider": "ollama-fedora",
-  "defaultModel": "jc-qwen3.6:35b-a3b-q8_0"
+  "defaultModel": "jc-qwen3.8:27b-mtp-q4_K_M"
 }
