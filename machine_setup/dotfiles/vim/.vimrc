@@ -71,7 +71,7 @@ Plug 'prabirshrestha/asyncomplete-lsp.vim' " lsp completion
 " copilot
 " Plug 'github/copilot.vim'
 " ollama
-Plug 'gergap/vim-ollama'
+" Plug 'gergap/vim-ollama'
 
 call plug#end()
 " end plugins >>>>>>>>

@@ -1,7 +1,7 @@
 {
   "debugLog": false,
   "permissionReviewLog": true,
-  "yoloMode": false,
+  "yoloMode": true,
   "permission": {
     "*": "allow",
     "path": {
@@ -50,9 +50,6 @@
     },
     "intercome": {
       "*": "allow"
-    },
-    "tell_joek": {
-      "*": "deny"
     },
     "external_directory": "ask"
   }

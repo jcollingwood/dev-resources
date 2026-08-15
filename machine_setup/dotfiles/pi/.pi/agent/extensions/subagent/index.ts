@@ -262,6 +262,44 @@ function getPiInvocation(args: string[]): { command: string; args: string[] } {
 	return { command: "pi", args };
 }
 
+/**
+ * Build the environment for a spawned subagent child so the permission system
+ * can forward `ask` prompts back to this session's TUI instead of auto-denying.
+ *
+ * - Strips our own session identity (mirrors pi core's bash tool): the child
+ *   runs --no-session and must not inherit our session file/id.
+ * - Sets PI_IS_SUBAGENT so the child is detected as a subagent, and
+ *   PI_SUBAGENT_PARENT_SESSION telling it which session to forward asks to.
+ * - If we are ourselves a subagent, PI_SUBAGENT_PARENT_SESSION already points at
+ *   our interactive ancestor — pass it through unchanged so nested grandchildren
+ *   reach the top-level TUI (an intermediate child has no UI and never polls its
+ *   own inbox).
+ */
+function buildChildEnv(parentSessionId: string | undefined): NodeJS.ProcessEnv {
+	const env = { ...process.env };
+	delete env.PI_SESSION_ID;
+	delete env.PI_SESSION_FILE;
+	// Checked before PI_SUBAGENT_PARENT_SESSION in the child; don't let an
+	// inherited router var redirect forwarding.
+	delete env.PI_AGENT_ROUTER_PARENT_SESSION_ID;
+
+	// Passthrough (nested) > our own session id > env fallback (unreliable: pi
+	// core does not set PI_SESSION_ID in its own process, but honor it if present).
+	const candidate =
+		process.env.PI_SUBAGENT_PARENT_SESSION ?? parentSessionId ?? process.env.PI_SESSION_ID;
+	const trimmed = (candidate ?? "").trim();
+	// Mirror normalizePermissionForwardingSessionId: reject empty / "unknown".
+	if (trimmed && trimmed.toLowerCase() !== "unknown") {
+		env.PI_IS_SUBAGENT = "1";
+		env.PI_SUBAGENT_PARENT_SESSION = trimmed;
+	} else {
+		// No valid target — drop any stale inherited value so the child can't
+		// pick up a misleading forwarding destination.
+		delete env.PI_SUBAGENT_PARENT_SESSION;
+	}
+	return env;
+}
+
 type OnUpdateCallback = (partial: AgentToolResult<SubagentDetails>) => void;
 
 async function runSingleAgent(
@@ -274,6 +312,7 @@ async function runSingleAgent(
 	signal: AbortSignal | undefined,
 	onUpdate: OnUpdateCallback | undefined,
 	makeDetails: (results: SingleResult[]) => SubagentDetails,
+	parentSessionId?: string,
 ): Promise<SingleResult> {
 	const agent = agents.find((a) => a.name === agentName);
 
@@ -336,6 +375,7 @@ async function runSingleAgent(
 				cwd: cwd ?? defaultCwd,
 				shell: false,
 				stdio: ["ignore", "pipe", "pipe"],
+				env: buildChildEnv(parentSessionId),
 			});
 			let buffer = "";
 
@@ -470,6 +510,10 @@ export default function (pi: ExtensionAPI) {
 		parameters: SubagentParams,
 
 		async execute(_toolCallId, params, signal, onUpdate, ctx) {
+			// Session id of this (possibly nested) session; used to forward the
+			// child's permission asks back here. buildChildEnv prefers an inherited
+			// PI_SUBAGENT_PARENT_SESSION when we are ourselves a subagent.
+			const parentSessionId = ctx.sessionManager.getSessionId();
 			const agentScope: AgentScope = params.agentScope ?? "user";
 			const discovery = discoverAgents(ctx.cwd, agentScope);
 			const agents = discovery.agents;
@@ -560,6 +604,7 @@ export default function (pi: ExtensionAPI) {
 						signal,
 						chainUpdate,
 						makeDetails("chain"),
+						parentSessionId,
 					);
 					results.push(result);
 
@@ -638,6 +683,7 @@ export default function (pi: ExtensionAPI) {
 							}
 						},
 						makeDetails("parallel"),
+						parentSessionId,
 					);
 					allResults[index] = result;
 					emitParallelUpdate();
@@ -674,6 +720,7 @@ export default function (pi: ExtensionAPI) {
 					signal,
 					onUpdate,
 					makeDetails("single"),
+					parentSessionId,
 				);
 				const isError = isFailedResult(result);
 				if (isError) {

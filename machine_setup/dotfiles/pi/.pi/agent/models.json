@@ -1,5 +1,20 @@
 {
   "providers": {
+    "llama-cpp-fedora": {
+      "baseUrl": "http://fedora:1141/v1",
+      "api": "openai-completions",
+      "apiKey": "llama",
+      "models": [
+        { 
+		"id": "qwen3.8-27b",
+		"name": "qwen3.8-27b (remote)"
+       	},
+        { 
+		"id": "qwen3.8-27b-s",
+		"name": "qwen3.8-27b-s (remote)"
+       	}
+      ]
+    },
     "ollama-fedora": {
       "baseUrl": "http://fedora:11434/v1",
       "api": "openai-completions",

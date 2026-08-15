@@ -15,6 +15,11 @@
     "npm:pi-token-speed"
   ],
   "lastChangelogVersion": "0.84.2",
-  "defaultProvider": "ollama-fedora",
-  "defaultModel": "jc-qwen3.8:27b-mtp-q4_K_M"
+  "defaultProvider": "llama-cpp-fedora",
+  "defaultModel": "qwen3.8-27b",
+  "tokenSpeed": {
+    "display": "full",
+    "countStrategy": "direct",
+    "endTpsBehavior": "average"
+  }
 }
