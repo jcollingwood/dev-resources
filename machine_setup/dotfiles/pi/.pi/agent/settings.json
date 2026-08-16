@@ -12,7 +12,8 @@
     "npm:@hypabolic/pi-hypa",
     "npm:@juicesharp/rpiv-todo",
     "npm:@gotgenes/pi-permission-system",
-    "npm:pi-token-speed"
+    "npm:pi-token-speed",
+    "npm:pi-web-access"
   ],
   "lastChangelogVersion": "0.84.2",
   "defaultProvider": "llama-cpp-fedora",

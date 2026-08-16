@@ -2,11 +2,12 @@
   "name": "pi-extensions",
   "private": true,
   "dependencies": {
-    "@gotgenes/pi-permission-system": "^25.2.2",
+    "@gotgenes/pi-permission-system": "^25.3.0",
     "@hypabolic/pi-hypa": "^0.1.14",
     "@juicesharp/rpiv-todo": "^2.5.2",
     "@piotr-oles/pi-reflag": "^1.2.0",
     "pi-catppuccin-tui": "^0.1.3",
-    "pi-token-speed": "^0.7.1"
+    "pi-token-speed": "^0.7.1",
+    "pi-web-access": "^0.23.0"
   }
 }

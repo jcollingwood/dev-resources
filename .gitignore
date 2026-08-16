@@ -9,3 +9,5 @@
 **/pi/.pi/agent/sessions/**
 **/pi/.pi/agent/run-history.jsonl
 **/pi/.pi/plans/**
+**/pi/.pi/web-search.json
+**/pi/.pi/web-search-cache/**
