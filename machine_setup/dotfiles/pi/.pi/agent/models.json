@@ -7,11 +7,23 @@
       "models": [
         { 
 		"id": "qwen3.8-27b",
-		"name": "qwen3.8-27b (remote)"
+		"name": "qwen3.8-27b (remote)",
+		"contextWindow": 64000
        	},
         { 
 		"id": "qwen3.8-27b-s",
-		"name": "qwen3.8-27b-s (remote)"
+		"name": "qwen3.8-27b-s (remote)",
+		"contextWindow": 64000
+       	},
+        { 
+		"id": "muse-glimmer-30B",
+		"name": "muse-glimmer-30B (remote)",
+		"contextWindow": 128000
+       	},
+        { 
+		"id": "gemma-4-12B",
+		"name": "gemma-4-12B (remote)",
+		"contextWindow": 128000
        	}
       ]
     },
