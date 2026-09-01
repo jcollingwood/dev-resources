@@ -13,7 +13,7 @@
         { 
 		"id": "qwen3.8-27b-s",
 		"name": "qwen3.8-27b-s (remote)",
-		"contextWindow": 64000
+		"contextWindow": 100000
        	},
         { 
 		"id": "muse-glimmer-30B",

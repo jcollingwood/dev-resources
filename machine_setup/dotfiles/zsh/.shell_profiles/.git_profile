@@ -1,16 +1,33 @@
 # git cli shortcuts
-alias gits='git status'
-alias gitc='git commit -m'
-alias gitps='git push'
-alias gitpl='git pull'
-alias gitco='git checkout'
-alias gitbr='git branch -a'
-alias gitmerge='git pull && git merge origin/master && git status'
-# reset entire branch
-alias gitrmaster='git reset --hard && git checkout master && git pull'
-alias gitrmain='git reset --hard && git checkout main && git pull'
+alias gs='git status'
+alias gits='gs'
+
+alias gc='git commit -m'
+alias gitc='gc'
+
+alias gps='git push'
+alias gitps='gps'
+alias gpf='git push --force-with-lease'
+alias gitpf='gpf'
+
+alias gpl='git pull'
+alias gitpl='gpl'
+
+alias gco='git checkout'
+alias gitco='gco'
+
+alias gbr='git branch -a'
+alias gitbr='gbr'
+
+alias grb='git rebase origin/main'
+
+alias greset='git reset --hard && git checkout main && git pull'
+
 # adds specified files then displays status
-function gita {
-    git add $@
-    git status
+function ga {
+    git add $@ && git status
+}
+
+function gac {
+    ga . && gc $0 && gps
 }
