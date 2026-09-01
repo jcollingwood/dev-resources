@@ -6,7 +6,7 @@ Delegate tasks to specialized subagents with isolated context windows.
 
 - **Isolated context**: Each subagent runs in a separate `pi` process
 - **Streaming output**: See tool calls and progress as they happen
-- **Parallel streaming**: All parallel tasks stream updates simultaneously
+- **Sequential only**: Parallel mode is disabled (local LLM setups); use single or chain mode
 - **Markdown rendering**: Final output rendered with proper formatting (expanded view)
 - **Usage tracking**: Shows turns, tokens, cost, and context usage per agent
 - **Abort support**: Ctrl+C propagates to kill subagent processes
@@ -71,9 +71,10 @@ When running interactively, the tool prompts for confirmation before running pro
 Use scout to find all authentication code
 ```
 
-### Parallel execution
+### Multiple agents (sequential)
+Parallel mode is disabled — run each agent in its own call:
 ```
-Run 2 scouts in parallel: one to find models, one to find providers
+Use scout to find models. Then use scout again to find providers.
 ```
 
 ### Chained workflow
@@ -93,7 +94,7 @@ Use a chain: first have scout find the read tool, then have planner suggest impr
 | Mode | Parameter | Description |
 |------|-----------|-------------|
 | Single | `{ agent, task }` | One agent, one task |
-| Parallel | `{ tasks: [...] }` | Multiple agents run concurrently (max 8, 4 concurrent) |
+| ~~Parallel~~ | `{ tasks: [...] }` | **Disabled** — rejected at runtime; use single or chain mode |
 | Chain | `{ chain: [...] }` | Sequential with `{previous}` placeholder |
 
 ## Output Display
