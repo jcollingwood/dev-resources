@@ -29,5 +29,5 @@ function ga {
 }
 
 function gac {
-    ga . && gc $0 && gps
+    ga . && gc $@ && gps
 }
