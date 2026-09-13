@@ -1,0 +1,185 @@
+#!/usr/bin/env bash
+# psb — run pi in a bubblewrap sandbox on an isolated copy of a repo,
+# with the host read-only and secrets masked. See SPEC.md / README.md.
+set -euo pipefail
+
+die() { echo "psb: error: $*" >&2; exit 1; }
+
+usage() {
+  cat <<'EOF'
+psb — run pi in a bubblewrap sandbox (read-only host, isolated repo copy)
+
+Usage:
+  psb [options] [repo-path | git-url] [pi args...]
+  psb --inplace [options] [repo-path] [pi args...]
+  psb help
+
+Options:
+  -n NAME        Name for the sandboxed copy under ~/workspaces/sandbox/
+                 (default: basename of path or URL; if no repo is given, defaults to .)
+  --reuse        Kept for compatibility; reuse is automatic when a sandbox name exists
+  --inplace      Skip copying; bind the given local path writable at its own
+                 absolute path. WARNING: writes go to the real repo.
+  --net none     Disable network egress (--unshare-net) and shadow
+                 /etc/resolv.conf (DNS would otherwise resolve via the
+                 systemd-resolved UDS in shared /run)
+  --scratch      Give pi a fresh per-run state dir instead of binding the
+                 real ~/.pi writable (default: real ~/.pi is bound writable)
+  --mask PATH    Extra path to mask inside the sandbox (repeat the flag for
+                 multiple paths). Directories get an empty tmpfs, files are
+                 shadowed with /dev/null. Missing paths warn and are skipped.
+  --dry-run      Print the bwrap command instead of executing it
+  -h, --help     Show this help
+
+Always masked (when present on host): ~/.ssh ~/.aws ~/.gnupg ~/.config/gh
+~/.kube ~/.docker (dirs) and ~/.netrc ~/.npmrc ~/.git-credentials (files).
+
+Environment:
+  PSB_CMD        Command to exec inside the sandbox instead of pi (testing)
+EOF
+}
+
+# ---------- argument parsing ----------
+NAME="" INPLACE=0 NET="host" SCRATCH=0 DRYRUN=0 REUSE=0
+MASKS=()
+REPO="" PI_ARGS=()
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    help|-h|--help) usage; exit 0 ;;
+    -n) [ $# -ge 2 ] || die "-n requires a name"; NAME="$2"; shift 2 ;;
+    --inplace) INPLACE=1; shift ;;
+    --net) [ $# -ge 2 ] || die "--net requires a value"; NET="$2"; shift 2
+      [ "$NET" = none ] || die "--net only supports: none" ;;
+    --scratch) SCRATCH=1; shift ;;
+    --reuse) REUSE=1; shift ;;
+    --dry-run) DRYRUN=1; shift ;;
+    --mask)
+      [ $# -ge 2 ] || die "--mask requires a path"
+      [[ "$2" != -* ]] || die "--mask path must not start with '-'"
+      MASKS+=("$2"); shift 2 ;;
+    --) shift; break ;;
+    -*) die "unknown option: $1 (see 'psb help')" ;;
+    *) break ;;
+  esac
+done
+
+if [ $# -ge 1 ]; then
+  REPO="$1"; shift
+  PI_ARGS=("$@")
+else
+  # default to current directory when no repo is given
+  REPO="."
+  PI_ARGS=()
+fi
+
+case "$NAME" in
+  .|..) die "-n NAME cannot be '.' or '..'" ;;
+esac
+if [ -n "$NAME" ] && { [[ "$NAME" == */* ]] || [[ "$NAME" == -* ]]; }; then
+  die "-n NAME must be a single path component"
+fi
+
+# ---------- resolve workspace ----------
+SRC=""
+WORKSPACE=""
+if [ "$INPLACE" = 1 ]; then
+  [ -d "$REPO" ] || die "--inplace requires an existing local directory: $REPO"
+  WORKSPACE="$(realpath "$REPO")"
+  echo "psb: warning: --inplace — sandbox writes go to the real repo at $WORKSPACE" >&2
+else
+  if [ -e "$REPO" ]; then
+    SRC="$(realpath "$REPO")"
+    [ -d "$SRC" ] || die "not a directory: $REPO"
+    [ -n "$NAME" ] || NAME="$(basename "$SRC")"
+  else
+    # treat as git URL
+    urlbase="${REPO%/}"; urlbase="${urlbase##*/}"
+    [ -n "$NAME" ] || NAME="${urlbase%.git}"
+  fi
+  WORKSPACE="$HOME/workspaces/sandbox/$NAME"
+  [ -L "$WORKSPACE" ] && die "target $WORKSPACE is a symlink — refusing (use -n NAME)"
+  if [ -e "$WORKSPACE" ] && [ -n "$(ls -A "$WORKSPACE")" ]; then
+    # auto-reuse: workspace already exists, skip copy
+    :
+  elif [ "$DRYRUN" != 1 ]; then
+    mkdir -p "$WORKSPACE"
+    if [ -n "$SRC" ]; then
+      cp -a "$SRC"/. "$WORKSPACE"/
+    else
+      git clone "$REPO" "$WORKSPACE" || die "git clone failed for $REPO"
+    fi
+  fi
+fi
+
+# ---------- build bwrap command (mount order matters: later shadows earlier) ----------
+B=(--ro-bind / /)                                        # 1. host read-only by default
+B+=(--bind "$WORKSPACE" "$WORKSPACE")                    # 2. writable repo, at its own absolute path
+# 3. pi state: scratch or real ~/.pi (resolve symlinks — bwrap cannot mount
+#    on a symlink destination, so bind the real dir at its own path)
+PI_REAL="$(readlink -f "$HOME/.pi")"
+if [ "$SCRATCH" = 1 ]; then
+  if [ "$DRYRUN" = 1 ]; then PI_STATE="${TMPDIR:-/tmp}/psb.scratch"; else
+    PI_STATE="$(mktemp -d "${TMPDIR:-/tmp}/psb.XXXXXX")"
+  fi
+  B+=(--bind "$PI_STATE" "$PI_REAL")
+elif [ -e "$PI_REAL" ]; then
+  B+=(--bind "$PI_REAL" "$PI_REAL")
+fi
+B+=(--dev /dev --proc /proc --tmpfs /tmp)                # 4. fresh dev/proc/tmp
+
+# 5. secret masks LAST (they shadow everything); guard with [ -e ] so bwrap
+#    never creates missing mountpoints on the host
+mask_dir()  { if [ -e "$1" ]; then B+=(--tmpfs "$1"); fi; }
+mask_file() { if [ -e "$1" ]; then B+=(--ro-bind /dev/null "$1"); fi; }
+
+for d in "$HOME/.ssh" "$HOME/.aws" "$HOME/.gnupg" \
+         "$HOME/.config/gh" "$HOME/.kube" "$HOME/.docker"; do
+  mask_dir "$d"
+done
+for f in "$HOME/.netrc" "$HOME/.npmrc" "$HOME/.git-credentials"; do
+  mask_file "$f"
+done
+for m in ${MASKS[@]+"${MASKS[@]}"}; do
+  m="$(realpath -m -- "$m")"
+  if [ ! -e "$m" ]; then echo "psb: warning: --mask target does not exist, skipping: $m" >&2; continue; fi
+  if [ -d "$m" ]; then mask_dir "$m"; else mask_file "$m"; fi
+done
+
+if [ "$NET" = none ]; then                               # shadow DNS (systemd-resolved UDS)
+  if [ "$DRYRUN" = 1 ]; then RESOLV_SHIM="${TMPDIR:-/tmp}/psb-resolv"; else
+    RESOLV_SHIM="$(mktemp "${TMPDIR:-/tmp}/psb-resolv.XXXXXX")"
+    : > "$RESOLV_SHIM"
+  fi
+  B+=(--unshare-net --ro-bind "$RESOLV_SHIM" "$(readlink -f /etc/resolv.conf)")
+fi
+
+# 6. unshares (identity uid mapping by default → no git ownership issues)
+B+=(--unshare-user-try --unshare-pid --unshare-ipc --unshare-uts)
+
+CMD="${PSB_CMD:-pi}"
+ENV=(env TMPDIR=/tmp npm_config_cache=/tmp/npm-cache)    # real /tmp, writable npm cache
+
+# ---------- cleanup per-run temp files/dirs ----------
+TMP_CLEANUP=()
+[ -n "${PI_STATE:-}" ] && TMP_CLEANUP+=("$PI_STATE")
+[ -n "${RESOLV_SHIM:-}" ] && TMP_CLEANUP+=("$RESOLV_SHIM")
+cleanup() {
+  [ ${#TMP_CLEANUP[@]} -eq 0 ] && return 0
+  rm -rf ${TMP_CLEANUP[@]+"${TMP_CLEANUP[@]}"}
+}
+trap cleanup EXIT
+
+# ---------- run (or print) ----------
+if [ "$DRYRUN" = 1 ]; then
+  printf 'bwrap'
+  for a in "${B[@]}" --chdir "$WORKSPACE" "${ENV[@]}" "$CMD" ${PI_ARGS[@]+"${PI_ARGS[@]}"}; do
+    printf ' %q' "$a"
+  done
+  printf '\n'
+  exit 0
+fi
+
+# no exec: the EXIT trap must fire to clean up per-run temp artifacts
+bwrap "${B[@]}" --chdir "$WORKSPACE" "${ENV[@]}" "$CMD" ${PI_ARGS[@]+"${PI_ARGS[@]}"}
+exit $?

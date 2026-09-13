@@ -16,6 +16,7 @@ plugins=(
 
 # load local bin to path - mainly for goose?
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 
 # include(): source if exists
