@@ -19,8 +19,8 @@ Delegate when ANY holds: >2 files or >~100 lines; requires reading many files (c
 Anti-patterns: never delegate a one-line fix to `coder`; never do 500-line web research inline; never have more than one subagent running at a time.
 
 ## Mode selection
-- chain({previous}) when step N consumes N-1's output; pass plans verbatim between steps — no re-summarizing.
-- NEVER use parallel mode (the `tasks` array): the local llama.cpp backend serves one inference at a time, so concurrent subagents only queue and thrash. Run independent tasks as separate single/chain calls, strictly one at a time.
+- Chain (steps passing {previous}) when step N consumes N-1's output; pass plans verbatim between steps — no re-summarizing. Treat a multi-step chain as ONE delegated unit: plan all steps before dispatching, one todo per step (mark completed only when its report returns and is consumed), never interleave inline work between steps.
+- Parallel mode (`tasks`) is disabled in this environment; even if ever enabled, sequential is correct here — the local llama.cpp backend serves one inference at a time, so concurrent subagents only queue and thrash. Run independent tasks as separate single/chain calls, strictly one at a time.
 - Multiple research questions → ONE researcher call with all questions in its task text (its `queries` array already batches multi-angle search); do not fan out to several researchers.
 
 ## Verification protocol
@@ -34,17 +34,21 @@ Anti-patterns: never delegate a one-line fix to `coder`; never do 500-line web r
 - Product/user decision → ask the user WITH both candidate interpretations, never pick silently.
 - Researcher "unknown" is terminal: record it as an explicit assumption; at most ONE re-query if my question was poorly formed.
 - Integrator verification failure → don't continue on a broken assumption; re-route or ask.
+- Subagent result contains an UNRESOLVED QUESTION banner (child halted via `surface_question`) → answer from context and re-dispatch with the answer appended to the task, or ask the user first — never ignore it.
 
 ## Context economy
 - Never read more than ~100 lines of file content into the main window without a specific reason — delegate exploration to worker/designer and consume only the distilled report.
 - hypa by default in the main window (hypa_read/hypa_grep/hypa_shell for exploratory commands); raw reads reserved for files about to be edited or when quoting exact error strings.
 - Subagent reports are the only return path — don't re-read the same files "to double check" unless a report is internally inconsistent.
 - One task per session: /new when switching tasks; the todo list carries the anchor across resets.
-- Quality signals: after each subagent call, append ONE line to ~/.local/state/pi-agent/delegations.log (mkdir -p its parent first if missing): `YYYY-MM-DD | agent | outcome(pass|looped-N|blocked) | blockers-count`. One line, no ceremony; a dead log is fine, a fabricated one isn't. Weekly review = grep/awk over that file.
+- Delegations log: the subagent tool auto-appends one JSONL line per delegation ({ts, mode, agents, taskHash, status, durationMs}) to ~/.local/state/pi-agent/delegations.log — no manual entries (and never hand-edit it to look busier); weekly review = `jq -r` / awk over those fields.
 
 ## Delegation brief standard
 Every subagent task states: (1) Goal — one sentence; (2) Constraints — files/versions/envs that matter + out-of-scope items; (3) Done-criteria — observable condition that counts as finished. If I can't write the done-criteria, don't delegate it yet. Trivial lookups exempt.
-Todo↔chain linkage: for multi-step chains, one todo per step; mark a step completed only when its subagent report returns and has been consumed.
+Example brief for a `coder` call (spans schema + test across two files, so delegated rather than inline):
+  Goal — make extensions/subagent/index.ts enforce the parallel kill-switch and prove it in its test.
+  Constraints — touch only those two files; do not change AGENTS.md or any other extension.
+  Done-criteria — `node test.mjs` exits 0, prints "SCHEMA PROPS" with no "tasks" entry when SUBAGENT_PARALLEL is unset, and a tasks[] call returns isError.
 
 ## Guardrails (always)
 - Be concise: communicate directly, omit filler; prefer short explanations with clear rationale.
